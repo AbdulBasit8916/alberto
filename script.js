@@ -669,6 +669,16 @@ document.addEventListener("DOMContentLoaded", () => {
             if (firstInvalid) firstInvalid.focus();
             return;
         }
-        status.textContent = "Your details look valid. This demo form is not connected to an email service yet.";
+        // Show a success message in place of the form; leave the location map untouched.
+        let successMessage = document.getElementById("contact-success-message");
+        if (!successMessage) {
+            successMessage = document.createElement("div");
+            successMessage.id = "contact-success-message";
+            successMessage.setAttribute("role", "status");
+            successMessage.style.cssText = "padding:24px 20px;margin-top:12px;border:1px solid rgba(201,164,92,.45);color:#c9a45c;background:rgba(201,164,92,.08);font-size:16px;line-height:1.6;";
+            successMessage.textContent = "Message Has Been Sent Successfully!";
+            form.insertAdjacentElement("afterend", successMessage);
+        }
+        form.style.display = "none";
     });
 });
